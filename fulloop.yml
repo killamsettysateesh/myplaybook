@@ -1,0 +1,14 @@
+--- # loop concept
+- name: loop concepts
+  hosts: all
+  become: yes
+
+
+  tasks:
+    - action: yum name='{{item}}' state=present
+      with_items:
+           - httpd
+           - tree
+           - git
+           - docker  
+      

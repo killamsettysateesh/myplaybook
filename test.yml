@@ -1,0 +1,10 @@
+--- # test file yml
+- hosts: all
+  become: yes
+
+  tasks:
+    - name: insstal tree
+      yum:
+        name: tree      
+        state: present
+   

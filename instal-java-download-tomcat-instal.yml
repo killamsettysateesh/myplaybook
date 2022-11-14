@@ -1,0 +1,41 @@
+--- # install java download and instal tomcat
+- name: instal java download & install tomcat
+  hosts: all
+  become: true
+
+
+  tasks:
+    - name: install java
+      yum:
+        name: java
+        state: present
+
+
+    - name: download tomcat
+      get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-8/v8.5.83/bin/apache-tomcat-8.5.83.tar.gz
+        dest: /tmp
+
+    - name: extract tomcat from tar file
+      unarchive:
+        src: /tmp/apache-tomcat-8.5.83.tar.gz
+        dest: /opt
+        remote_src: yes
+
+
+    - name: provide executable permissions
+      file: 
+        path: /opt/apache-tomcat-8.5.83/bin/startup.sh
+        mode: 0777
+
+
+    - name: start tomcat service
+      shell: nohup ./startup.sh
+      args:
+        chdir: /opt/apache-tomcat-8.5.83/bin
+
+            
+
+
+
+

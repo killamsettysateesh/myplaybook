@@ -1,0 +1,14 @@
+--- # uninstall httpd in hosts
+- name: uninstall httpd
+  hosts: webservers
+  user: ansible
+  become: yes
+  connection: ssh
+
+
+  tasks:
+    - name: uninstal httpd in all hosts systems
+      yum:
+        name: httpd
+        state: absent
+      when: ansible_os_family == "RedHat"    

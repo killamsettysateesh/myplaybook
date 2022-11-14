@@ -1,0 +1,10 @@
+--- # loop concept
+- name: loop concepts
+  hosts: all
+  become: yes
+
+
+  tasks:
+    - yum:
+        name: [ 'git' , 'tree', 'mysql', 'httpd' ]
+        state: installed

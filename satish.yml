@@ -1,0 +1,11 @@
+--- # this is my first httpd insng
+- hosts: webservers
+  become: true
+  connection: ssh
+  user: ansible
+
+
+  tasks:
+    - name: task instal httpd
+      action: yum name=httpd state=present
+         
